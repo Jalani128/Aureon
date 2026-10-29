@@ -1,0 +1,49 @@
+@import './styles/cover.css';
+@import './styles/components.css';
+@import './styles/sections.css';
+@import './styles/pdf-match.css';
+
+:root {
+  --ink: #0f2a1d;
+  --ink-2: #14331f;
+  --deep: #0b1d14;
+  --green: #6cc04a;
+  --green-d: #2f7d32;
+  --tint: #f3f6f0;
+  --line: #e1e8dc;
+  --text: #1c2b22;
+  --muted: #5d6b62;
+  --radius: 18px;
+  --sans: 'Inter', system-ui, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--sans); color: var(--text); background: #fff; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+.container { width: min(1200px, 100% - 48px); margin-inline: auto; }
+.container--narrow { width: min(860px, 100% - 48px); }
+.section { padding: 88px 0; }
+.section--tight { padding: 40px 0; }
+.section--tint { background: var(--tint); }
+.section--dark { background: var(--ink); color: #fff; }
+.muted { color: var(--muted); }
+.hl { color: var(--green); }
+.eyebrow { font: 500 11px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--green-d); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.eyebrow::before { content: ''; width: 18px; height: 1px; background: currentColor; }
+.section--dark .eyebrow, .hero .eyebrow, .cta .eyebrow { color: var(--green); }
+.source { display: block; margin-top: 12px; font: 400 10.5px var(--mono); color: var(--muted); }
+.source--light { color: rgba(255,255,255,.55); text-align: right; }
+.mono-label { font: 500 10.5px var(--mono); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
