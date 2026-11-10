@@ -1,0 +1,271 @@
+/* Responsive layer. Loaded after pdf-match.css so these breakpoints win over its desktop-only values.
+   Tuned for phones down to 360px, with iPhone 16 Pro Max (430 x 932) as the primary target. */
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { overflow-x: clip; }
+
+/* ---------- Small laptops / iPad landscape: full desktop nav doesn't fit ---------- */
+@media (min-width: 961px) and (max-width: 1200px) {
+  .header__inner { gap: 12px; }
+  .nav { gap: 2px; }
+  .nav__link { padding: 8px 10px; font-size: 14px; }
+  .nav__search { padding: 8px 10px; }
+  .nav__ar { margin: 0 4px; padding: 7px 10px; font-size: 14px; }
+  .nav__cta { padding: 10px 16px; font-size: 14px; }
+}
+@media (min-width: 961px) and (max-width: 1080px) {
+  .nav > .nav__link:first-child { display: none; } /* "Home": the logo already links home */
+}
+
+/* ---------- Tablet & below ---------- */
+@media (max-width: 1100px) {
+  .explorer { grid-template-columns: 340px 1fr; }
+  .problems { grid-template-columns: 1fr; gap: 32px; }
+  .cta__inner { grid-template-columns: 1fr 440px; gap: 48px; }
+  .tier { grid-template-columns: 1fr 1fr; }
+  .tteam { grid-template-columns: 1fr 1fr; }
+  .usecases { grid-template-columns: 1fr 1fr; }
+  .scope { grid-template-columns: 1fr 380px; }
+  .hero h1, .hero:not(.hero--side) h1, .hero--photo h1, .hero--right h1 { font-size: 60px; }
+  .sh h2, .cta h2 { font-size: 46px; }
+}
+
+@media (max-width: 960px) {
+  /* Header + slide-down menu */
+  .header__inner { height: 64px; position: static; }
+  .header__toggle { display: grid; place-items: center; width: 44px; height: 44px; margin-right: -8px; border-radius: 12px; }
+  .header__toggle:active { background: var(--tint); }
+  .nav { top: 100%; gap: 4px; white-space: normal; max-height: calc(100dvh - 64px); overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 24px 40px rgba(8,24,16,.12); padding: 12px 20px calc(20px + env(safe-area-inset-bottom)); }
+  .nav__link { padding: 13px 14px; font-size: 17px; text-align: left; border-radius: 12px; }
+  .nav__drop { width: 100%; }
+  .nav__drop > .nav__link { width: 100%; display: flex; justify-content: space-between; }
+  .nav__search { justify-content: flex-start; padding: 13px 14px; border-radius: 12px; font-size: 16px; }
+  .nav__search .nav__search-txt { display: inline; }
+  .nav__ar { margin: 4px 0; text-align: center; padding: 12px; }
+  .nav .btn, .nav__cta { width: 100%; padding: 15px 22px; margin-top: 4px; }
+  .mega { padding: 4px 0 8px; }
+  .mega__item { padding: 10px 12px; }
+  .mega__item:hover, .mega__item.active { transform: none; }
+  .mega__all { font-size: 14px; padding: 13px 14px; gap: 10px; }
+  .stabs { top: 64px; }
+
+  /* Layout grids that pdf-match.css pinned to desktop widths */
+  .explorer, .problems, .problems__card, .cta__inner, .tier, .tteam, .usecases, .scope, .sectors, .zdetail, .newlines,
+  .market, .market--energy, .portal__body, .finder, .estimator, .live { grid-template-columns: 1fr; }
+  .hero__inner, .hero--photo .hero__inner, .hero--right .hero__inner { grid-template-columns: 1fr; gap: 36px; }
+  .newlines { min-height: 0; }
+  .gallery { grid-template-columns: 1fr 1fr; }
+  .gallery figure:first-child { grid-column: 1 / -1; }
+  .statsbar__grid { grid-template-columns: repeat(2, 1fr); }
+  .statsbar__item:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .statsbar__item:nth-child(n+3) { border-top: 1px solid var(--line); }
+
+  /* Heroes */
+  .hero, .hero:not(.hero--side), .hero--photo, .hero--right { min-height: 0; padding: 56px 0 64px; }
+  .hero--side { min-height: 0; padding-top: 56px; }
+  .hero--right { background: linear-gradient(rgba(11,29,20,.82), rgba(11,29,20,.92)), var(--hero-img) center / cover no-repeat, #0b1d14; }
+  .hero--photo { background: linear-gradient(rgba(8,24,16,.78), rgba(8,24,16,.9)), var(--hero-img) center / cover no-repeat, #0b1d14; }
+  .hero__chips li { width: auto; }
+  .hero__chips li:nth-child(2) { margin-left: 0; }
+  .hero__chips li.rv-in:hover { transform: none; }
+
+  /* Component internals */
+  .explorer__preview { min-height: 440px; background-size: cover; background-position: center; }
+  /* Photos fill the whole card on narrow screens, so the text needs a darker scrim to stay readable */
+  .explorer__overlay { background: linear-gradient(rgba(10,22,15,.15), rgba(10,22,15,.6) 32%, rgba(10,22,15,.94) 58%); }
+  .finder__result::before { background: linear-gradient(rgba(10,22,15,.2), rgba(10,22,15,.65) 30%, rgba(10,22,15,.95) 55%); }
+  .explorer__overlay h3, .finder__result h3 { text-shadow: 0 2px 18px rgba(0,0,0,.45); }
+  .problems__img { min-height: 200px; }
+  .tier__img { min-height: 300px; }
+  .tteam__img { min-height: 280px; }
+  .usecases__img { min-height: 260px; }
+  .sectors__panel { min-height: 420px; }
+  .portal__side { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; align-items: center; padding: 12px; }
+  .portal__side strong { margin: 0 8px 0 0; }
+  .portal__main { overflow-x: auto; }
+  .solar { height: 520px; }
+  .solar__card { width: auto; left: 16px; right: 16px; top: 16px; }
+  .scard h3 { white-space: normal; }
+  .scard--featured .scard__img { flex: none; min-height: 240px; }
+  .fab { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); }
+}
+
+/* ---------- Phones (iPhone 16 Pro Max = 430px) ---------- */
+@media (max-width: 600px) {
+  .container, .container--narrow, .hero:not(.hero--side) .hero__inner { width: calc(100% - 40px); }
+  .container { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  .section { padding: 64px 0; }
+  .section--tight { padding: 32px 0; }
+
+  /* Type scale */
+  .hero h1, .hero:not(.hero--side) h1, .hero--photo h1, .hero--right h1 { font-size: clamp(36px, 10.5vw, 46px); line-height: 1.08; max-width: none; }
+  .hero__lead { font-size: 17px; margin-top: 18px; }
+  .hero__ar { font-size: 19px; }
+  .crumbs { margin-bottom: 24px; font-size: 12.5px; }
+  .sh { margin-bottom: 32px; gap: 18px; }
+  .sh h2 { font-size: clamp(30px, 8.4vw, 38px); }
+  .sh__lead { font-size: 16.5px; }
+  .cta { padding: 72px 0; }
+  .cta h2 { font-size: clamp(32px, 9vw, 40px); max-width: none; }
+  .cta p:last-child { font-size: 16.5px; }
+  .eyebrow { font-size: 11.5px; }
+  .btn { padding: 14px 22px; font-size: 16px; }
+  .hero__actions { margin-top: 26px; }
+  .hero__actions .btn { flex: 1 1 100%; }
+
+  /* Header logo */
+  .logo__word { font-size: 28px; }
+  .logo__swoosh { width: 46px; right: -11px; top: -5px; }
+  .logo__sub { font-size: 7.5px; }
+
+  /* Home */
+  .hero--side .hero__inner { padding-bottom: 32px; }
+  .hero__strip { gap: 16px 18px; }
+  .marquee { padding: 16px 0; }
+  .marquee__track span { font-size: 16px; }
+  .explorer__list button { padding: 14px 12px; min-height: 0; gap: 12px; }
+  .explorer__num { width: 28px; }
+  .explorer__list strong { font-size: 17px; }
+  .explorer__preview { min-height: 400px; border-radius: 20px; }
+  .explorer__overlay { padding: 22px; }
+  .explorer__overlay h3 { font-size: 28px; }
+  .explorer__overlay p { font-size: 15.5px; }
+  .problems__chips { flex-wrap: nowrap; overflow-x: auto; margin-inline: -20px; padding: 0 20px 4px; scrollbar-width: none; }
+  .problems__chips::-webkit-scrollbar { display: none; }
+  .pchip { flex: none; font-size: 15px; padding: 11px 16px; }
+  .problems__body { padding: 22px; }
+  .newline { min-height: 240px; }
+  .newline strong, .newline--sm strong { font-size: 26px; }
+  .newline__body { padding: 22px; }
+  .market__card strong, .market--energy .market__card strong { font-size: 48px; }
+  .icard { flex-basis: 78vw; height: 340px; }
+
+  /* Cards & services */
+  .scard__img { height: 200px; }
+  .scard h3, .scard--featured h3 { font-size: 22px; max-width: none; }
+  .scard--featured .scard__img { min-height: 200px; }
+  .scard__body { padding: 20px 20px 22px; }
+  .filters__search { width: 100%; }
+  .ftabs, .tiertabs, .ttabs { display: flex; flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
+  .ftabs::-webkit-scrollbar, .tiertabs::-webkit-scrollbar, .ttabs::-webkit-scrollbar { display: none; }
+  .ftab, .tiertabs button, .ttabs .pchip--light { flex: none; white-space: nowrap; }
+  .tiertabs button { padding: 10px 16px; font-size: 15px; }
+  .ttabs .pchip--light { padding: 11px 18px; font-size: 15px; }
+  .itile, .igrid .itile { height: 300px; background-size: cover; }
+  .package h3 { font-size: 24px; }
+
+  /* Statsbar */
+  .statsbar__item { padding: 18px 12px; }
+  .statsbar__item strong { font-size: 22px; }
+  .statsbar__item span { font-size: 13.5px; }
+
+  /* Dynamics */
+  .finder__form { padding: 26px 20px; }
+  .finder__result { min-height: 380px; background-size: cover !important; }
+  .finder__result > div { padding: 22px; }
+  .finder__result h3 { font-size: 28px; }
+  .zsteps { grid-template-columns: 1fr 1fr; }
+  .zsteps button { padding: 14px; }
+  .zsteps strong { font-size: 16px; }
+  .zdetail { padding: 24px 18px; gap: 24px; }
+  .zdetail h3 { font-size: 23px; }
+  .zdetail p { font-size: 16px; }
+  .zcode { font-size: 12.5px; padding: 18px 14px; }
+  .tteam__body { padding: 24px 20px; }
+  .tteam__body h3 { font-size: 26px; }
+  .rollout { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+  .gallery figure { height: 320px; }
+
+  /* SupportOS */
+  .portal__bar { padding: 12px 14px; font-size: 13px; }
+  .portal__main { padding: 14px; }
+  .portal__kpis { grid-template-columns: 1fr 1fr; }
+  .portal__kpis strong { font-size: 24px; }
+  .portal__new { grid-template-columns: 1fr; gap: 10px; }
+  .portal__new input, .portal__new select { width: 100%; min-width: 0; font-size: 16px; }
+  .portal__new .btn { width: 100%; }
+  .portal__table { width: 100%; min-width: 0; font-size: 14px; }
+  .portal__table td { padding: 12px 5px; }
+  .portal__table th:nth-child(4), .portal__table td:nth-child(4) { display: none; } /* Site column: no room on phones */
+  .tier__img { min-height: 260px; }
+  .ring { width: 160px; height: 160px; }
+  .ring strong { font-size: 36px; }
+  .tier__body { padding: 22px 20px; }
+  .tier__body h3 { font-size: 26px; }
+  .tier__grid { grid-template-columns: 1fr 1fr; }
+  .channel { padding: 20px; }
+
+  /* Energy */
+  .solar { height: 460px; border-radius: 20px; }
+  .solar__card { padding: 14px 16px; }
+  .solar__card strong { font-size: 18px; }
+  .solar__card p { font-size: 14px; line-height: 1.5; }
+  .dot { width: 32px; height: 32px; margin: -16px 0 0 -16px; font-size: 14px; }
+  .sectors__list { grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .sectors__list::-webkit-scrollbar { display: none; }
+  .sectors__list button { scroll-snap-align: start; min-height: 72px; }
+  .sectors__panel { min-height: 380px; }
+  .sectors__panel h3 { font-size: 26px; }
+  .estimator__inputs, .estimator__out { padding: 26px 20px; }
+  .estimator__out strong { font-size: 46px; }
+  .estimator__sub b { font-size: 21px; }
+  .dash { padding: 18px; }
+  .dash__top { flex-wrap: wrap; gap: 10px; }
+  .dash__top strong { white-space: normal; }
+  .dash__kpis { grid-template-columns: 1fr; }
+  .dash__kpis b { font-size: 22px; }
+
+  /* Service sub-pages */
+  .stabs__row { min-width: 0; padding: 10px 20px; }
+  .stabs a { font-size: 14px; padding: 8px 14px; white-space: nowrap; }
+  .outcome { padding: 20px; }
+  .outcome p { font-size: 16px; }
+  .scope__list label { min-height: 64px; padding: 14px 16px; }
+  .scope__img { height: 200px; }
+  .usecases li { padding: 16px 18px; gap: 16px; font-size: 15.5px; }
+  .pn { height: 160px; }
+  .pn strong { font-size: 22px; }
+
+  /* Form & CTA */
+  .form { padding: 22px 18px; border-radius: 18px; }
+  .form input, .form select, .form textarea { font-size: 16px; } /* >=16px stops iOS zoom-on-focus */
+  .faq__q { padding: 18px; font-size: 16.5px; }
+  .faq__a { padding: 0 18px 18px; font-size: 15.5px; }
+
+  /* Footer */
+  .footer { padding-top: 48px; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+  .footer__grid > :first-child { grid-column: 1 / -1; }
+  .footer li { margin-bottom: 0; }
+  .footer li a { display: inline-block; padding: 8px 0; }
+  .footer__bar { flex-direction: column; gap: 6px; padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+
+  /* Command palette */
+  .cmdk { padding-top: calc(16px + env(safe-area-inset-top)); }
+  .cmdk__box > input { font-size: 16px; padding: 16px 18px; }
+  .cmdk__box ul { max-height: 60dvh; }
+  .cmdk__box footer { display: none; }
+
+  /* Cover */
+  .cover, .cover__inner { min-height: 100dvh; }
+  .cover__inner { width: calc(100% - 40px); padding: calc(36px + env(safe-area-inset-top)) 0 calc(28px + env(safe-area-inset-bottom)); }
+  .cover::before { background-size: auto 50%; }
+  .cover .logo__word { font-size: 38px; }
+  .cover .logo__swoosh { width: 56px; right: -13px; top: -6px; }
+  .cover h1 { font-size: clamp(36px, 10.5vw, 46px); }
+  .cover__lead { font-size: 17px; margin-top: 18px; }
+  .cover__toc { margin-top: 40px; }
+  .cover__label { font-size: 16.5px; }
+  .cover__foot { margin-top: 36px; font-size: 13.5px; }
+
+  /* No hover-lift on touch */
+  .rv-in.scard:hover, .rv-in.outcome:hover, .rv-in.channel:hover, .rv-in.package:hover,
+  .rv-in.newline:hover, .rv-in.icard:hover, .rv-in.pn:hover { transform: none; box-shadow: none; }
+}
+
+/* Small phones (iPhone SE / mini) */
+@media (max-width: 380px) {
+  .hero__strip { grid-template-columns: 1fr; }
+  .tier__grid, .portal__kpis, .zsteps, .footer__grid { grid-template-columns: 1fr; }
+}

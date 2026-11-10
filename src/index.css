@@ -2,6 +2,7 @@
 @import './styles/components.css';
 @import './styles/sections.css';
 @import './styles/pdf-match.css';
+@import './styles/mobile.css';
 
 :root {
   --ink: #0f2a1d;
